@@ -49,3 +49,26 @@ Ex:
 ───────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 [@timeshot walkUtils]$ 
 ```
+
+Seems like go is faster, but its also not following symlinks at the moment, give or take 100 files to parse..
+
+```bash
+[@timeshot cmd]$ time find /home/rmintz/Downloads -type f -exec md5sum {} \; > /tmp/bashExample.txt
+
+real	2m35.233s
+user	1m38.843s
+sys	0m29.940s
+[@timeshot cmd]$ 
+
+
+real	1m20.741s
+user	0m46.146s
+sys	0m11.033s
+[@timeshot cmd]$ time ./md5Lister /home/rmintz/Downloads/ > /tmp/goExample.txt
+
+[@timeshot cmd]$ wc -l /tmp/goExample.txt /tmp/bashExample.txt 
+   80604 /tmp/goExample.txt
+   80797 /tmp/bashExample.txt
+  161401 total
+[@timeshot cmd]$
+```
