@@ -46,7 +46,7 @@ func PrintMD5Sum(path string, info os.FileInfo, err error) error {
 			log.Fatal(err)
 		}
 
-		fmt.Printf("%s %x\n", path, h.Sum(nil))
+		fmt.Printf("%x %s\n", h.Sum(nil), path)
 	}
 	return nil
 }
